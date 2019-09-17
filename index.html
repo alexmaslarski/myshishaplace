@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Shisha Place - Your shisha guide.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Exo+2:200,300,400,700,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header id="header">
+    <div id="backBtn" class="header-columns hidel" onclick="showPage('home')"><a href="#home"><i class="material-icons prefix">arrow_back_ios</i></a></div>
+    <div class="header-columns"><a href="index.html"><img src="images/logo2.png" alt="" id="logo"></a></div>
+    <div class="header-columns"><a onclick="login()" id="profileBtn" href="#profile-page"><i class="material-icons prefix">person_outline</i></a></div>
+  </header>
+<div id="splash" class="valign-wrapper">
+  <img src="images/logo2.png" alt="">
+</div>
+  <div id="welcome-message" class="row hiden">
+
+    <div id="welcome-carousel" class="carousel carousel-slider center">
+      <div class="carousel-fixed-item center">
+
+      </div>
+      <div class="carousel-item secondary-color-bg white-text valign-wrapper">
+        <div class="welcome-content">
+          <div class="welcome-image">
+            <img src="images/welcomeimage.png" alt="">
+          </div>
+
+          <p class="white-text">Swipe right to learn more</p>
+        </div>
+
+      </div>
+      <div class="carousel-item secondary-color-bg white-text valign-wrapper">
+        <div class="welcome-content">
+
+          <div class="welcome-image">
+            <img src="images/searchimage.png" alt="">
+          </div>
+
+          <p class="white-text">Search for the perfect experience</p>
+        </div>
+      </div>
+      <div class="carousel-item secondary-color-bg white-text valign-wrapper">
+        <div class="welcome-content">
+
+          <div class="welcome-image">
+            <img src="images/nearby.png" alt="">
+          </div>
+
+          <p class="white-text">See lounges around you</p>
+        </div>
+      </div>
+      <div class="carousel-item secondary-color-bg white-text valign-wrapper">
+        <div class="welcome-content">
+
+          <div class="welcome-image">
+            <img src="images/map.png" alt="">
+          </div>
+
+          <p class="white-text">And on the map!</p>
+        </div>
+      </div>
+      <div class="carousel-item secondary-color-bg white-text valign-wrapper">
+        <div class="welcome-content">
+
+          <div class="welcome-image">
+            <img src="images/loungepage.png" alt="">
+          </div>
+
+          <p class="white-text">See more about the place you liked</p>
+          <a onclick="enterPage()" class="btn waves-effect accent-color-bg white-text">Enter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main>
+    <div class="pageWrapper page" id="home">
+      <div class="row">
+        <form class="col s10 offset-s1">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">search</i>
+              <input onkeyup="searchLounges(this.value)" type="text" id="search-input"  class="autocomplete white-text">
+              <label for="search-input">Lounges, Brands and flavours</label>
+            </div>
+
+            <div class="input-field col s9">
+              <i class="material-icons prefix">near_me</i>
+              <input type="text" id="city-input" class="autocomplete white-text">
+              <label for="city-input">City</label>
+            </div>
+            <div class="input-field col s3 center-align">
+              <a onclick="currentLocation()" id="show-nearby-switch" class="btn-floating btn-medium waves-effect waves-light border-location  "><i class="material-icons">my_location</i></a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <article class="lounges">
+
+        <section id="featured">
+        </section>
+
+        <section id="search-results" class="hiden">
+          <div id="search-lounges"></div>
+        </section>
+      </article>
+    </div>
+
+    <div class="pageWrapper page" id="map-page">
+      <div id="map-container">
+
+        <div id="map"></div>
+      </div>
+    </div>
+    <div class="pageWrapper hiden page" id="lounge-page">
+
+    </div>
+
+    <div class="pageWrapper hiden page" id="profile-page">
+      <h3 id="user-profile-name"></h3>
+      <!-- <section id="login">
+
+        <section id="firebaseui-auth-container"></section>
+
+      </section> -->
+      <a id="logoutBtn" onclick="logout()" class="waves-effect waves-light red btn-small">Log Out</a>
+
+      <div id="adminBtn">
+        <a class="waves-effect waves-light btn-small" href="https://maestrobets.com/wp-admin/">LOUNGE PANEL</a>
+      </div>
+
+    </div>
+    <section id="login" class="hiden">
+      <!-- firebase auth container  -->
+      <section id="firebaseui-auth-container"></section>
+
+    </section>
+    <div class="pageWrapper page" id="contact">
+      <article class="valign-wrapper">
+        <div>
+          <h3 class="accent-color">You want to add a lounge?</h3>
+          <h4>or contact us about anything else...</h4>
+          <h5 class="accent-color">support@myshishaplace.com</h5>
+        </div>
+      </article>
+    </div>
+
+  </main>
+
+
+  <footer>
+
+    <ul id="tabs" class=" navigation tabs secondary-color-bg">
+      <li class="tab col s3 "><a href="#home" id="home-tab-menu" onclick="showPage('home')" class="active"><i class="material-icons white-text">search</i></a></li>
+      <li class="tab col s3"><a href="#map-page" id="map-tab-menu" onclick="showPage('map-page')"><i class="material-icons white-text">map</i></a></li>
+      <li class="tab col s3"><a href="https://www.instagram.com/myshishaplace.dk/" target="_blank" id="ig-tab-menu"><i class="material-icons white-text">photo_library</i></a></li>
+      <li class="tab col s3"><a href="#contact" id="contact-tab-menu" onclick="showPage('contact')"><i class="material-icons white-text">email</i></a></li>
+    </ul>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <script src="js/main.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrty42d3xzaw1dx__vp8Z_eIRv4CYnOic&libraries=geometry&callback=initMap"></script>
+
+</body>
+
+</html>
